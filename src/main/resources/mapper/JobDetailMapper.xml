@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.rcz.dao.JobDetailMap">
+    <sql id="jobDeatilColumns">
+		t.JOB_NAME as "jobName",
+		t.JOB_GROUP as "jobGroup",
+		t.CRON_EXPRESSION as "cronExpression",
+		t.JOB_CLASS_NAME as "jobClassName",
+		t.TRIGGER_NAME as "triggerName",
+		t.TRIGGER_GROUP as "triggerGroup",
+		t.TIME_ZONE_ID as "timeZoneId",
+		t.STATUS as "status",
+		t.DESCRIPTION as "description",
+		t.DEL_FLAG as "delFlag",
+		t.CREATETIME as "createtime"
+	</sql>
+
+
+
+    <select id="getJobDetails" resultType="com.rcz.entity.JobDetail">
+			SELECT
+				<include refid="jobDeatilColumns"/>
+			FROM
+				JOBDETAIL t
+    </select>
+    
+</mapper>
