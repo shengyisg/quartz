@@ -8,6 +8,7 @@ import com.rcz.entity.JobAndTrigger;
 import com.rcz.entity.JobDetail;
 import com.rcz.service.IJobAndTriggerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -34,6 +35,7 @@ public class JobAndTriggerImpl implements IJobAndTriggerService {
 		PageHelper.startPage(pageNum, pageSize);
 		List<JobDetail> list = jobdetailmap.queryJobDetails();
 		PageInfo<JobDetail> page = new PageInfo<JobDetail>(list);
+
 		return page;
 	}
 }
