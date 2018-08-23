@@ -3,8 +3,11 @@ package com.rcz;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.rcz.component.QuartzJobFacotry;
 import org.quartz.Scheduler;
 import org.quartz.ee.servlet.QuartzInitializerListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +17,16 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 @Configuration
 public class SchedulerConfig {
 
+    @Autowired
+    @Qualifier("jobInstance")
+    private QuartzJobFacotry jobInstance;
+
+
     @Bean(name="SchedulerFactory")
     public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setQuartzProperties(quartzProperties());
+        factory.setJobFactory(jobInstance);//job能否通过@Autowired的关键
         return factory;
     }
 
