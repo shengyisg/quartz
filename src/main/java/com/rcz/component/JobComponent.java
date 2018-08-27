@@ -10,6 +10,6 @@ public class JobComponent {
 
     public String ww(){
         System.out.println("进入了组件");
-        return "进入了组件";
+        return "进入了组件1";
     }
 }
